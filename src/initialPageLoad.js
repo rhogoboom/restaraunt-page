@@ -1,4 +1,5 @@
 import {createHomeBox} from './loadHome';
+import {createMenuBox} from './loadMenu';
 
 const initialLoad = () => {
     // Cache DOM
@@ -8,12 +9,12 @@ const initialLoad = () => {
     createNav(body);
 
     const container = createInitialBox(wrapper);
-
     
     createHomeBox(container);
 
-    createFooter(body);
+    // createMenuBox(container);
 
+    createFooter(body);
 
 }
 
@@ -25,9 +26,11 @@ const createNav = (div) => {
         const navItem = document.createElement('li');
         navItem.textContent = item;
         navItem.classList.add('nav-item');
-        if(item != 'Home') {
-            navItem.classList.add('active');
+        if(item == 'Home') {
+            navItem.classList.add('current');
         }
+
+        navItem.addEventListener('click', loadTab);
         navList.appendChild(navItem);
 
     });
@@ -38,7 +41,28 @@ const createNav = (div) => {
     div.insertBefore(nav, div.firstChild);
 }
 
+const loadTab = (e) => {
+    console.log(e.target);
+    const box = document.querySelector('.content-box');
+    const current = document.querySelector('.current');
+    if (!e.target.classList.contains('current')) {
+        console.log('text');
+        if (e.target.textContent == 'Menu') {
+            createMenuBox(box);
+        }
+        if (e.target.textContent == 'Home') {
+            createHomeBox(box);
+        }
+        if (e.target.textContent == 'Contact') {
+            console.log('TODO');
+        }
 
+        e.target.classList.add('current');
+        current.classList.remove('current');
+    }
+
+    
+}
 
 const createInitialBox = (div) => {
     const startBox = document.createElement('div');
@@ -48,7 +72,10 @@ const createInitialBox = (div) => {
 }
 
 const createFooter = (div) => {
+    const test = document.createElement('h3');
+    test.textContent = 'TODO';
     
+    div.appendChild(test);
 
 
 }

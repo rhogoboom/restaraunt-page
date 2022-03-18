@@ -45,7 +45,7 @@ nav > ul > li {
     border-bottom: none;
 }
 
-nav > ul > li.active:hover {
+nav > ul > li:not(.current):hover {
     background-color: rgba(260, 260, 260, 0.1);
     cursor: pointer;
 }

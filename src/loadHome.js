@@ -1,6 +1,9 @@
 import Icon from './sandwich.png';
+import { clearContents } from './clearContents';
 
 const createHomeBox = (div) => {
+
+    clearContents(div);
     
     const title = document.createElement('h1'); 
     title.textContent = 'Hogoboom\'s Hoagies';
